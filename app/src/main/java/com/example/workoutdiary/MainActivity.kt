@@ -1,5 +1,6 @@
 package com.example.workoutdiary
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +14,11 @@ class MainActivity : AppCompatActivity() {
         
         //layout 값 초기화
         val startButton = findViewById<Button>(R.id.startButton);
-        
+
+        startButton.setOnClickListener {
+            // StatusActivity로 전환
+            val intent = Intent(this, StatusActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
