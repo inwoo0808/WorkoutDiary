@@ -99,6 +99,32 @@ class RoutineActivity : AppCompatActivity() {
         saveButton.setOnClickListener {
             // StatusActivity로 전환
             val intent = Intent(this, IsRoutineActivity::class.java)
+            // 데이터 전달
+            val selectedCategories = mutableListOf<String>()
+
+            if (isChestClicked) selectedCategories.add("가슴")
+            if (isSholderClicked) selectedCategories.add("어깨")
+            if (isBackClicked) selectedCategories.add("등")
+            if (isAbsClicked) selectedCategories.add("복근")
+            if (isArmClicked) selectedCategories.add("팔")
+            if (isLegClicked) selectedCategories.add("다리")
+            if (isHipClicked) selectedCategories.add("엉덩이")
+            if (isCardioClicked) selectedCategories.add("유산소")
+
+            intent.putStringArrayListExtra("categories", ArrayList(selectedCategories))
+
+            // EditText 입력값 저장
+            val routineText = routineEditText.text.toString()
+            intent.putExtra("routineName", routineText)
+
+            // ListView 아이템(title과 set 값)을 Pair로 저장
+            val routineItems = ArrayList<Pair<String, String>>()
+            for (item in items) {
+                routineItems.add(Pair(item.title, item.set)) // title과 set을 Pair로 저장
+            }
+
+            intent.putExtra("routineItems", routineItems)
+            setResult(RESULT_OK, intent)
             startActivity(intent)
         }
 

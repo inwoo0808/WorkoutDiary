@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class IsRoutineActivity : AppCompatActivity() {
+    private val items = mutableListOf<ListViewItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,11 +24,19 @@ class IsRoutineActivity : AppCompatActivity() {
 
         val listView = findViewById<ListView>(R.id.routineList)
 
-        val items = mutableListOf<ListViewItem>()
+        // 카테고리 데이터
+        val categories: ArrayList<String> = intent.getStringArrayListExtra("categories") ?: ArrayList<String>()
+        val categoryString = categories.joinToString(", ")
 
-        items.add(ListViewItem("가슴 루틴", "가슴", "운동 5개"))
-        items.add(ListViewItem("가슴 루틴", "가슴", "운동 5개"))
-        items.add(ListViewItem("가슴 루틴", "가슴", "운동 5개"))
+        // routineName이 null일 경우 처리
+        val routineName = intent.getStringExtra("routineName") ?: "루틴 이름 없음"
+
+        // routineItems 데이터 받기
+        val routineItems = intent.getSerializableExtra("routineItems") as ArrayList<Pair<String, String>>
+
+        for (item in routineItems) {
+            items.add(ListViewItem(routineName, categoryString, item.second))
+        }
 
         val adapter = ListViewAdapter(items)
         listView.adapter = adapter
@@ -39,15 +48,16 @@ class IsRoutineActivity : AppCompatActivity() {
 
     }
 
+
     private fun showAddRoutineDialog() {
         // 다이얼로그 빌더 생성
         AlertDialog.Builder(this).apply {
             setTitle("루틴 추가")
             setMessage("루틴을 추가해보세요!")
             setPositiveButton("확인") { dialog, _ ->
-                // RoutineActivity로 이동
+                // RoutineActivity로 이동 (결과를 받기 위해 startActivityForResult 사용)
                 val intent = Intent(this@IsRoutineActivity, RoutineActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, 100) // 결과를 받을 수 있도록 requestCode를 설정
                 dialog.dismiss()
             }
             setNegativeButton("취소") { dialog, _ ->
@@ -55,5 +65,26 @@ class IsRoutineActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
         }.create().show()
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            // RoutineActivity에서 돌아온 결과로 새로운 루틴 데이터 받기
+            val addedRoutineItems = data?.getSerializableExtra("routineItems") as? ArrayList<Pair<String, String>>
+            val routineName = data?.getStringExtra("routineName") ?: "새 루틴"
+            val categories = data?.getStringArrayListExtra("categories") ?: ArrayList<String>()
+            val categoryString = categories.joinToString(", ")
+
+            // 새로 추가된 루틴을 기존 아이템에 추가
+            addedRoutineItems?.forEach { item ->
+                items.add(ListViewItem(routineName, categoryString, item.second))
+            }
+
+            // 어댑터에서 notifyDataSetChanged 호출하여 ListView 갱신
+            (findViewById<ListView>(R.id.routineList).adapter as ListViewAdapter).notifyDataSetChanged()
+        }
     }
 }
