@@ -1,0 +1,195 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- 상단 저장 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:paddingBottom="8dp">
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:text="저장"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <!-- 운동 정보 입력 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="18dp"
+        android:text="운동 정보를 입력해주세요"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- 운동 이름 -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="18dp"
+        android:text="운동 이름"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/edittext_exercise_name"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:hint="ex) 벤치프레스"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:background="@android:drawable/editbox_background_normal" />
+
+
+    <!-- 세트 수와 개수 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="18dp"
+        android:text="세트 수와 개수, 무게를 알려주세요"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <!-- 선택 옵션 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_weight_reps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#D1D1D1"
+            android:text="무게, 개수"
+            android:textColor="@color/black"
+            android:textColorLink="@color/inactive_button_color"
+            android:textSize="14sp"
+            app:cornerRadius="10dp" />
+
+        <Button
+            android:id="@+id/button_reps_only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#D1D1D1"
+            android:text="개수만"
+            android:textColor="@color/black"
+            android:textColorLink="@color/inactive_button_color"
+            android:textSize="14sp"
+            app:cornerRadius="10dp" />
+
+        <Button
+            android:id="@+id/button_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D1D1D1"
+            android:text="시간"
+            android:textColor="@color/black"
+            android:textColorLink="@color/inactive_button_color"
+            android:textSize="14sp"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/set_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <!-- 기본 세트 항목 -->
+        <LinearLayout
+            android:id="@+id/set_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="1세트"
+                android:textSize="14sp"
+                android:gravity="center_vertical" />
+
+            <!-- 무게 입력 -->
+            <EditText
+                android:id="@+id/input_weight"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="2"
+                android:hint="kg"
+                android:inputType="numberDecimal"
+                android:padding="8dp"
+                android:background="@android:drawable/editbox_background_normal"
+                />
+
+            <!-- 개수 입력 -->
+            <EditText
+                android:id="@+id/input_reps"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="2"
+                android:hint="개수"
+                android:inputType="number"
+                android:padding="8dp"
+                android:background="@android:drawable/editbox_background_normal"
+                />
+
+            <!-- 삭제 버튼 -->
+            <Button
+                android:id="@+id/button_delete_set"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:backgroundTint="#D1D1D1"
+                android:minHeight="48dp"
+                android:text="삭제"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- 세트 추가 버튼, 오른쪽 정렬 -->
+    <Button
+        android:id="@+id/button_add_set"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#2196F3"
+        android:minHeight="48dp"
+        android:text="세트 추가"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:cornerRadius="10dp" />
+
+</LinearLayout>

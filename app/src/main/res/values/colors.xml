@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="teal_200">#03DAC5</color> <!-- 예: 밝은 청록색 -->
+    <color name="teal_700">#018786</color> <!-- 선택적으로 추가 -->
+    <color name="red">#FF0000</color>     <!-- 삭제 버튼 색상 -->
+    <color name="active_button_color">#FFFFFFFF</color> <!-- 활성화 버튼 색상 -->
+    <color name="inactive_button_color">#9E9E9E</color> <!-- 비활성화 버튼 색상 -->
+    <color name="active_text_color">#FF000000</color> <!-- 활성화 버튼 텍스트 색상 -->
+    <color name="inactive_text_color">#4D4D4D</color> <!-- 비활성화 버튼 텍스트 색상 -->
 </resources>
