@@ -30,6 +30,15 @@ class RoutineTimerActivity : AppCompatActivity() {
         val endButton = findViewById<Button>(R.id.endButton)
         startStopButton = findViewById<Button>(R.id.stopButton)
 
+        // RoutineStartActivity에서 전달한 데이터 받기
+        val routineTitle = intent.getStringExtra("routineTitle") ?: "기본 제목"
+        val routine = intent.getStringExtra("routine") ?: "기본 루틴"
+        val count = intent.getStringExtra("count") ?: "기본 세트"
+
+        // 받은 데이터를 TextView에 설정
+        titleTextView.text = routineTitle
+        setTextView.text = count
+
         // 타이머 실행할 Runnable
         timerRunnable = Runnable {
             if (isRunning) {
@@ -58,9 +67,9 @@ class RoutineTimerActivity : AppCompatActivity() {
             // 다이얼로그 생성
             val dialog = AlertDialog.Builder(this)
                 .setTitle("운동을 종료하시겠습니까?")
-                .setMessage("운동을 종료하면 현재까지의 기록은 저장되지 않습니다.")
+                .setMessage("종료를 원하시면 확인 버튼을 눌러주세요!")
                 .setPositiveButton("확인") { _, _ ->
-                    // 확인 버튼 클릭 시 IsRoutineActivity로 이동
+
                     val intent = Intent(this, IsRoutineActivity::class.java)
                     startActivity(intent)
                     finish() // 현재 액티비티 종료

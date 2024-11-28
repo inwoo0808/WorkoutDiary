@@ -37,7 +37,11 @@ class ListViewAdapter(private val items: MutableList<ListViewItem>) : BaseAdapte
 
         // parent.context를 사용하여 Intent 생성
         binding.routineButton.setOnClickListener {
-            val intent = Intent(parent?.context, RoutineStartActivity::class.java)
+            val intent = Intent(parent?.context, RoutineStartActivity::class.java).apply {
+                putExtra("routineTitle", item.routineTitle)
+                putExtra("routine", item.routine)
+                putExtra("count", item.count)
+            }
             parent?.context?.startActivity(intent)
         }
 
