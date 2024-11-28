@@ -7,15 +7,15 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/timeTv"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="427dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:padding="16dp"
-        android:text="00:00:00"
-        android:textSize="34sp" />
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:srcCompat="@drawable/image1" />
 
     <Button
         android:id="@+id/timerButton"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#000000"
         android:gravity="center_horizontal"
         android:text="운동시작"
         android:textColorLink="#2196F3"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="#000000"
             android:text="첫 루틴을 추가해보세요"
             app:cornerRadius="10dp" />
 

@@ -33,7 +33,7 @@
                 android:id="@+id/routine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#2196F3"
+                android:background="#090909"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:paddingRight="10dp"
@@ -52,14 +52,14 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="#2196F3"
+            android:background="#000000"
             android:gravity="center|end"
             android:paddingLeft="16dp"
             android:paddingTop="5dp"
             android:paddingRight="16dp"
             android:paddingBottom="5dp"
             android:text="운동 1개"
-            android:textColor="#3F51B5"
+            android:textColor="#7E7E7E"
             android:textStyle="bold" />
 
     </LinearLayout>

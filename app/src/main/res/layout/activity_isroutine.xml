@@ -2,50 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:backgroundTint="#525050"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/timerTv"
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:padding="16dp"
-        android:text="00:00:00"
-        android:textSize="34sp" />
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:srcCompat="@drawable/image1" />
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#000000"
         android:gravity="center_horizontal"
-        android:text="운동시작"
+        android:text="New Routine"
         android:textColorLink="#2196F3"
         android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="10dp" />
 
     <TextView
-        android:id="@+id/startTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="빠른 시작"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/routineNameTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="20dp"
         android:text="Routine name"
-        android:textColor="#2196F3"
-        android:textSize="16sp"
+        android:textColor="#716E6E"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <LinearLayout
