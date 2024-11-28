@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".StatusActivity" />
         <activity android:name=".RoutineActivity" />
+        <activity android:name=".IsRoutineActivity" />
     </application>
 
 </manifest>

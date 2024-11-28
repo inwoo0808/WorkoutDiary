@@ -1,9 +1,12 @@
 package com.example.workoutdiary
 
+import ListViewAdapter2
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -80,6 +83,23 @@ class RoutineActivity : AppCompatActivity() {
         }
         cardioButton.setOnClickListener {
             toggleButtonState(cardioButton, ::isCardioClicked)
+        }
+
+        val listView = findViewById<ListView>(R.id.routineList)
+
+        val items = mutableListOf<ListViewItem2>()
+
+        items.add(ListViewItem2("벤치", "5세트"))
+        items.add(ListViewItem2("벤치", "5세트"))
+        items.add(ListViewItem2("벤치", "5세트"))
+
+        val adapter = ListViewAdapter2(items)
+        listView.adapter = adapter
+
+        saveButton.setOnClickListener {
+            // StatusActivity로 전환
+            val intent = Intent(this, IsRoutineActivity::class.java)
+            startActivity(intent)
         }
 
     }
