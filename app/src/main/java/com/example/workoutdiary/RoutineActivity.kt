@@ -25,6 +25,8 @@ class RoutineActivity : AppCompatActivity() {
     private var isAllClicked = false
     private var isCardioClicked = false
 
+    private lateinit var listView: ListView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -57,6 +59,11 @@ class RoutineActivity : AppCompatActivity() {
             routineEditText.text.clear() // EditText 내용 초기화
         }
 
+        addButton.setOnClickListener {
+            val intent = Intent(this, WorkoutInfoActivity::class.java)
+            startActivityForResult(intent, 1001) // Request code를 지정
+        }
+
         // 각 버튼의 클릭 리스너 설정
         chestButton.setOnClickListener {
             toggleButtonState(chestButton, ::isChestClicked)
@@ -86,23 +93,19 @@ class RoutineActivity : AppCompatActivity() {
             toggleButtonState(cardioButton, ::isCardioClicked)
         }
 
-        val listView = findViewById<ListView>(R.id.routineList)
+        listView = findViewById<ListView>(R.id.routineList)
 
         val items = mutableListOf<ListViewItem2>()
-
-        items.add(ListViewItem2("벤치", "5세트"))
-        items.add(ListViewItem2("벤치", "5세트"))
-        items.add(ListViewItem2("벤치", "5세트"))
 
         val adapter = ListViewAdapter2(items)
         listView.adapter = adapter
 
         saveButton.setOnClickListener {
-            // StatusActivity로 전환
+            // 데이터 준비 완료 후 실행
             val intent = Intent(this, IsRoutineActivity::class.java)
-            // 데이터 전달
-            val selectedCategories = mutableListOf<String>()
 
+            // 선택된 카테고리들 수집
+            val selectedCategories = mutableListOf<String>()
             if (isChestClicked) selectedCategories.add("가슴")
             if (isSholderClicked) selectedCategories.add("어깨")
             if (isBackClicked) selectedCategories.add("등")
@@ -114,21 +117,22 @@ class RoutineActivity : AppCompatActivity() {
 
             intent.putStringArrayListExtra("categories", ArrayList(selectedCategories))
 
-            // EditText 입력값 저장
+            // EditText에서 입력된 루틴 이름 가져오기
             val routineText = routineEditText.text.toString()
             intent.putExtra("routineName", routineText)
 
-            // ListView 아이템(title과 set 값)을 Pair로 저장
+            // ListView에서 아이템들을 Pair로 저장
             val routineItems = ArrayList<Pair<String, String>>()
             for (item in items) {
                 routineItems.add(Pair(item.title, item.set)) // title과 set을 Pair로 저장
             }
 
             intent.putExtra("routineItems", routineItems)
+
+            // 준비된 데이터를 전달하고, 화면 전환
             setResult(RESULT_OK, intent)
             startActivity(intent)
         }
-
     }
     // 버튼 클릭 상태를 토글하는 함수
     private fun toggleButtonState(button: Button, clickedState: KMutableProperty0<Boolean>) {
@@ -143,4 +147,22 @@ class RoutineActivity : AppCompatActivity() {
         clickedState.set(!clickedState.get()) // 상태 토글
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 1001 && resultCode == RESULT_OK) {
+            // WorkoutInfoActivity에서 전달받은 데이터 가져오기
+            val newItem = data?.getSerializableExtra("routineItems") as? Pair<String, String>
+
+            if (newItem != null) {
+                // Adapter 캐스팅 후 아이템 추가
+                val adapter = listView.adapter as? ListViewAdapter2
+                if (adapter != null) {
+                    // ListView에 새로운 아이템 추가
+                    adapter.items.add(ListViewItem2(newItem.first, newItem.second + " 세트"))
+                    adapter.notifyDataSetChanged() // 변경사항 반영
+                }
+            }
+        }
+    }
 }

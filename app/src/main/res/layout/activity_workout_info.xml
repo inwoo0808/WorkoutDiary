@@ -19,12 +19,12 @@
             android:id="@+id/button_save"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:backgroundTint="@color/white"
             android:minHeight="48dp"
             android:padding="8dp"
             android:text="저장"
             android:textColor="@color/black"
-            android:backgroundTint="@color/white"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -36,7 +36,7 @@
         android:layout_marginBottom="18dp"
         android:text="운동 정보를 입력해주세요"
         android:textColor="@color/black"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <!-- 운동 이름 -->
@@ -48,7 +48,8 @@
         android:layout_marginBottom="18dp"
         android:text="운동 이름"
         android:textColor="@color/black"
-        android:textSize="20sp"/>
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edittext_exercise_name"
@@ -65,11 +66,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="18dp"
         android:text="세트 수와 개수, 무게를 알려주세요"
         android:textColor="@color/black"
-        android:textSize="20sp"/>
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <!-- 선택 옵션 -->
     <LinearLayout
@@ -83,35 +85,41 @@
             android:id="@+id/button_weight_reps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="#D1D1D1"
+            android:backgroundTint="#000000"
             android:text="무게, 개수"
-            android:textColor="@color/black"
+            android:textColor="@color/active_button_color"
             android:textColorLink="@color/inactive_button_color"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:cornerRadius="10dp" />
 
         <Button
             android:id="@+id/button_reps_only"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="#D1D1D1"
+            android:backgroundTint="#000000"
             android:text="개수만"
-            android:textColor="@color/black"
+            android:textColor="@color/active_button_color"
             android:textColorLink="@color/inactive_button_color"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:cornerRadius="10dp" />
 
         <Button
             android:id="@+id/button_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#D1D1D1"
+            android:layout_margin="10dp"
+            android:backgroundTint="#000000"
             android:text="시간"
-            android:textColor="@color/black"
+            android:textColor="@color/active_button_color"
             android:textColorLink="@color/inactive_button_color"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:cornerRadius="10dp" />
 
     </LinearLayout>
@@ -185,11 +193,12 @@
         android:layout_height="48dp"
         android:layout_gravity="end"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#FE000000"
         android:minHeight="48dp"
         android:text="세트 추가"
         android:textColor="@android:color/white"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:cornerRadius="10dp" />
 
 </LinearLayout>

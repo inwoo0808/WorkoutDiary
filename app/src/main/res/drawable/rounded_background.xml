@@ -3,4 +3,3 @@
     <corners android:radius="16dp" />
     <solid android:color="@color/black" /> <!-- LinearLayout 배경색 -->
 </shape>
-
