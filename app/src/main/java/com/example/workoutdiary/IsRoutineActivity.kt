@@ -21,6 +21,7 @@ class IsRoutineActivity : AppCompatActivity() {
         val timerTextView = findViewById<TextView>(R.id.timerTv)
         val startButton = findViewById<Button>(R.id.startButton)
         val startTextView = findViewById<TextView>(R.id.startTv)
+        val routineNameTextView = findViewById<TextView>(R.id.routineNameTv)
 
         val listView = findViewById<ListView>(R.id.routineList)
 
@@ -34,8 +35,10 @@ class IsRoutineActivity : AppCompatActivity() {
         // routineItems 데이터 받기
         val routineItems = intent.getSerializableExtra("routineItems") as ArrayList<Pair<String, String>>
 
+        routineNameTextView.text = routineName
+
         for (item in routineItems) {
-            items.add(ListViewItem(routineName, categoryString, item.second))
+            items.add(ListViewItem(item.first, categoryString, item.second))
         }
 
         val adapter = ListViewAdapter(items)

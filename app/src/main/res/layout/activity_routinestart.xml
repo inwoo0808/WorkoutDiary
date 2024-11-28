@@ -59,4 +59,11 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/workout" />
+
 </LinearLayout>
