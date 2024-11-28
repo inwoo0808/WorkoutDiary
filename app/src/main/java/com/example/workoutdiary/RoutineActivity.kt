@@ -10,6 +10,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlin.reflect.KMutableProperty0
 
 class RoutineActivity : AppCompatActivity() {
@@ -135,7 +136,7 @@ class RoutineActivity : AppCompatActivity() {
             button.setBackgroundColor(Color.parseColor("#E7E5E5")) // 원래 배경색으로 설정
             button.setTextColor(Color.parseColor("#353232"))
         } else {
-            button.setBackgroundColor(Color.parseColor("#2196F3")) // 클릭된 배경색으로 설정
+            button.setBackgroundColor(ContextCompat.getColor(this, R.color.black)) // 클릭된 배경색으로 설정
             button.setTextColor(Color.WHITE)
 
         }

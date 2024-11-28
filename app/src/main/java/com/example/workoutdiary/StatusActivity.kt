@@ -14,7 +14,6 @@ class StatusActivity  : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_status)
 
-        val TimeTextView = findViewById<TextView>(R.id.timeTv)
         val timerButton = findViewById<Button>(R.id.timerButton)
         val addButton = findViewById<Button>(R.id.addButton)
         val firstButton = findViewById<Button>(R.id.firstButton)

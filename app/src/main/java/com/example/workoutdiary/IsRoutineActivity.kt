@@ -18,9 +18,7 @@ class IsRoutineActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_isroutine)
 
-        val timerTextView = findViewById<TextView>(R.id.timerTv)
         val startButton = findViewById<Button>(R.id.startButton)
-        val startTextView = findViewById<TextView>(R.id.startTv)
         val routineNameTextView = findViewById<TextView>(R.id.routineNameTv)
 
         val listView = findViewById<ListView>(R.id.routineList)

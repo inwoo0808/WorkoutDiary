@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#525050"
+    android:backgroundTint="#9B9B9B"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -22,9 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#DCDCDC"
         android:gravity="center_horizontal"
         android:text="운동시작"
+        android:textColor="#090909"
         android:textColorLink="#2196F3"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -64,6 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/workout" />
+        android:background="#FFFFFF"
+        app:srcCompat="@drawable/image2" />
 
 </LinearLayout>

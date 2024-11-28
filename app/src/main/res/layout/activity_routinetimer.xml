@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#525050"
+    android:backgroundTint="#4E4E4E"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -39,10 +39,108 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="#000000"
             android:text="운동종료"
             android:textStyle="bold"
             app:cornerRadius="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/timerTv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="16dp"
+            android:text="00:00"
+            android:textColor="#070707"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/addButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#909090"
+                android:padding="10dp"
+                android:text="+1분"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/addButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#909090"
+                android:padding="10dp"
+                android:text="+30초"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/addButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#909090"
+                android:padding="10dp"
+                android:text="+10초"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/addButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#909090"
+                android:padding="10dp"
+                android:text="+5초"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#909090"
+                android:text="초기화"
+                android:textColor="#0B0B0B"
+                app:cornerRadius="5dp" />
+
+            <Button
+                android:id="@+id/startButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000000"
+                android:text="시작"
+                app:cornerRadius="5dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -73,12 +171,5 @@
             android:textColor="#FAF9F9"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/workout" />
 
 </LinearLayout>

@@ -19,6 +19,11 @@ class RoutineTimerActivity : AppCompatActivity() {
     private lateinit var timerRunnable: Runnable
     private lateinit var startStopButton: Button
 
+    private var minutes2 = 0
+    private var seconds2 = 0
+    private var isRunning2 = false
+    private lateinit var timerRunnable2: Runnable
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +35,16 @@ class RoutineTimerActivity : AppCompatActivity() {
         val endButton = findViewById<Button>(R.id.endButton)
         startStopButton = findViewById<Button>(R.id.stopButton)
 
+        val timerTextView2 = findViewById<TextView>(R.id.timerTv2)
+
+        val addButton1 = findViewById<Button>(R.id.addButton1)
+        val addButton2 = findViewById<Button>(R.id.addButton2)
+        val addButton3 = findViewById<Button>(R.id.addButton3)
+        val addButton4 = findViewById<Button>(R.id.addButton4)
+
+        val resetButton = findViewById<Button>(R.id.resetButton)
+        val startButton = findViewById<Button>(R.id.startButton)
+
         // RoutineStartActivity에서 전달한 데이터 받기
         val routineTitle = intent.getStringExtra("routineTitle") ?: "기본 제목"
         val routine = intent.getStringExtra("routine") ?: "기본 루틴"
@@ -39,7 +54,12 @@ class RoutineTimerActivity : AppCompatActivity() {
         titleTextView.text = routineTitle
         setTextView.text = count
 
-        // 타이머 실행할 Runnable
+        endButton.setOnClickListener {
+            val intent = Intent(this, IsRoutineActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 타이머 1 (정상 동작 유지)
         timerRunnable = Runnable {
             if (isRunning) {
                 seconds++
@@ -55,44 +75,79 @@ class RoutineTimerActivity : AppCompatActivity() {
                 val timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds)
                 timerTextView.text = timeString
 
-                handler.postDelayed(timerRunnable, 1000) // 1초마다 실행
+                handler.postDelayed(timerRunnable, 1000)
             }
         }
 
         // 타이머 바로 시작
         handler.postDelayed(timerRunnable, 1000)
 
-        // 종료 버튼 클릭 이벤트 (다이얼로그 표시 후, 확인 시 이동)
-        endButton.setOnClickListener {
-            // 다이얼로그 생성
-            val dialog = AlertDialog.Builder(this)
-                .setTitle("운동을 종료하시겠습니까?")
-                .setMessage("종료를 원하시면 확인 버튼을 눌러주세요!")
-                .setPositiveButton("확인") { _, _ ->
-
-                    val intent = Intent(this, IsRoutineActivity::class.java)
-                    startActivity(intent)
-                    finish() // 현재 액티비티 종료
-                }
-                .setNegativeButton("취소", null) // 취소 버튼 클릭 시 아무 일도 하지 않음
-                .create()
-
-            // 다이얼로그 표시
-            dialog.show()
-        }
-
-        // 종료 버튼 클릭 이벤트 (타이머 정지 또는 재시작)
         startStopButton.setOnClickListener {
             if (isRunning) {
-                // 타이머를 멈추고, 버튼 텍스트를 "재시작"으로 변경
                 isRunning = false
                 startStopButton.text = "재시작"
             } else {
-                // 타이머를 재시작하고, 버튼 텍스트를 "정지"로 변경
                 isRunning = true
                 handler.postDelayed(timerRunnable, 1000)
                 startStopButton.text = "정지"
             }
         }
+
+        // 타이머 2 (카운트다운)
+        timerRunnable2 = Runnable {
+            if (isRunning2) {
+                if (seconds2 == 0 && minutes2 == 0) {
+                    isRunning2 = false
+                    timerTextView2.text = "00:00"
+                } else {
+                    if (seconds2 == 0) {
+                        minutes2--
+                        seconds2 = 59
+                    } else {
+                        seconds2--
+                    }
+                    updateTimerDisplay(timerTextView2, minutes2, seconds2)
+                    handler.postDelayed(timerRunnable2, 1000)
+                }
+            }
+        }
+
+        startButton.setOnClickListener {
+            if (isRunning2) {
+                isRunning2 = false
+                startButton.text = "시작"
+            } else {
+                isRunning2 = true
+                handler.postDelayed(timerRunnable2, 1000)
+                startButton.text = "정지"
+            }
+        }
+
+        resetButton.setOnClickListener {
+            isRunning2 = false
+            minutes2 = 0 // 초기 시간(분)을 다시 설정
+            seconds2 = 0
+            updateTimerDisplay(timerTextView2, minutes2, seconds2)
+            startButton.text = "시작"
+        }
+
+        // Add 버튼 (타이머 2에만 적용)
+        addButton1.setOnClickListener { minutes2 += 1; updateTimerDisplay(timerTextView2, minutes2, seconds2) }
+        addButton2.setOnClickListener { seconds2 += 30; normalizeTime(2); updateTimerDisplay(timerTextView2, minutes2, seconds2) }
+        addButton3.setOnClickListener { seconds2 += 10; normalizeTime(2); updateTimerDisplay(timerTextView2, minutes2, seconds2) }
+        addButton4.setOnClickListener { seconds2 += 5; normalizeTime(2); updateTimerDisplay(timerTextView2, minutes2, seconds2) }
+    }
+
+    private fun normalizeTime(timer: Int) {
+        if (timer == 2) {
+            if (seconds2 >= 60) {
+                minutes2 += seconds2 / 60
+                seconds2 %= 60
+            }
+        }
+    }
+
+    private fun updateTimerDisplay(timerTextView: TextView, minutes: Int, seconds: Int) {
+        timerTextView.text = String.format("%02d:%02d", minutes, seconds)
     }
 }
