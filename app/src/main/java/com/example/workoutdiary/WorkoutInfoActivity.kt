@@ -81,15 +81,11 @@ class WorkoutInfoActivity : AppCompatActivity() {
                 sets.add("${weight}kg x ${reps}개")
             }
 
-            // 디버깅 로그 추가
-            println("운동 이름: $exerciseName")
-            println("세트 데이터: $sets")
-
-            val intent = Intent(this, WorkoutSummaryActivity::class.java).apply {
-                putExtra("exerciseName", exerciseName)
-                putStringArrayListExtra("sets", sets)
-            }
-            startActivity(intent)
+            val intent = Intent()
+            val newItem = Pair(exerciseName, sets.size.toString())
+            intent.putExtra("routineItems", newItem)
+            setResult(RESULT_OK, intent)
+            finish()
         }
 
         // 기본 레이아웃 설정

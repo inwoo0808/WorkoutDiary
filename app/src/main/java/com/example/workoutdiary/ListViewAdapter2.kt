@@ -6,7 +6,7 @@ import android.widget.Toast
 import com.example.workoutdiary.ListViewItem2
 import com.example.workoutdiary.databinding.ListviewItem2Binding
 
-class ListViewAdapter2(private val items: MutableList<ListViewItem2>) : BaseAdapter() {
+class ListViewAdapter2(val items: MutableList<ListViewItem2>) : BaseAdapter() {
 
     override fun getCount(): Int = items.size
 
